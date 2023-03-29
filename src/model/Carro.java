@@ -112,7 +112,7 @@ public class Carro {
     public String toString() {
         return "\n---" + "\nplaca:\t" + placa + "\nmarca:\t" + marca + "\nmodelo:\t" + modelo +
                "\nanoFab:\t" + anoFab + "\nanoMod:\t" + anoMod + "\ncor\t" + cor + "\ntpCambio=" + tpCambio +
-                "\ncombustivel:\t" + combustivel +  "\nproprietario\t" + proprietario.getNome() + '}';
+                "\ncombustivel:\t" + combustivel +  "\nproprietario\t" + proprietario.getNome();
     }
     
 }
