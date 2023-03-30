@@ -60,14 +60,13 @@ public class INF3N212 {
         if(opM == 2){
             subM = "Carro";
         }
-        
-        System.out.println("--Ger. " + subM + "--");
+        System.out.println("--Ger. " + subM + " --");
         System.out.println("1 - Cadastrar " + subM);
         System.out.println("2 - Editar " + subM);
         System.out.println("3 - Listar " + subM + "s");
         System.out.println("4 - Deletar " + subM);
         System.out.println("0 - Voltar");
         System.out.print("Digite aqui: ");
-    }
+    }//fim subMenu
     
 }//fim classe

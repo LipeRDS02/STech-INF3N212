@@ -70,6 +70,10 @@ public class Pessoa {
     public String toString() {
         
         return "\n---" +"\nidPessoa:\t" + idPessoa + "\nnome:\t" + nome + "\ncpf:\t" + cpf + 
+<<<<<<< HEAD
                 "\nendereco:\t" + endereco + "\ntelefone:\t" + telefone;
+=======
+                "\nendereco:\t" + endereco + "\ntelefone:\t" + telefone ;
+>>>>>>> c05065acdfdbd8d27ea435732846bde18ccd82d6
     }
 }

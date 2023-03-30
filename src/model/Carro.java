@@ -110,8 +110,13 @@ public class Carro {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "\n---" + "\nplaca:\t" + placa + "\nmarca:\t" + marca + "\nmodelo:\t" + modelo + 
                 "\nanoFab:\t" + anoFab + "\nanoMod:\t" + anoMod + "\ncor\t" + cor + "\ntpCambio=" + tpCambio +
+=======
+        return "\n---" + "\nplaca:\t" + placa + "\nmarca:\t" + marca + "\nmodelo:\t" + modelo +
+               "\nanoFab:\t" + anoFab + "\nanoMod:\t" + anoMod + "\ncor\t" + cor + "\ntpCambio=" + tpCambio +
+>>>>>>> c05065acdfdbd8d27ea435732846bde18ccd82d6
                 "\ncombustivel:\t" + combustivel +  "\nproprietario\t" + proprietario.getNome();
     }
     
