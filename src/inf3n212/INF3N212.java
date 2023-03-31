@@ -14,11 +14,11 @@ import java.util.Scanner;
  * @author 182120036
  */
 public class INF3N212 {
-    
+
     public static CPessoa cadPessoa = new CPessoa();
     public static CCarro cadCarro = new CCarro();
     static Scanner leia = new Scanner(System.in);
-    
+
     /**
      * @param args the command line arguments
      */
@@ -26,38 +26,94 @@ public class INF3N212 {
         // TODO code application logic here
         cadPessoa.mockPessoas();
         cadCarro.mockCarros();
-        
-        System.out.println(cadPessoa.getPessoas());
-        System.out.println("---");
-        System.out.println(cadCarro.getCarros());
-        
+        int opM = 99;
+        int opSM = 99;
+        do {
+            System.out.println("--Sistema de Cadastro--");
+            menuP();
+            opM = leiaNumInt();
+            switch (opM) {
+                case 1:
+                case 2:
+                    do{
+                    subMenu(opM);
+                    opSM = leiaNumInt();
+                    switch (opSM) {
+                        case 1:
+                            System.out.println("Cadastrar");
+                            if (opM==1) {
+                                cadastrarPessoa();
+                            }else{
+                                cadastrarCarro();
+                            }
+                            break;
+                        case 2:
+                            System.out.println("Editar");
+                            if (opM==1) {
+                                editarPessoa();
+                            }else{
+                                editarCarro();
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Listar");
+                            if (opM==1) {
+                                ListarPessoa();
+                            }else{
+                                listarCarro();
+                            }
+                            break;
+                        case 4:
+                            System.out.println("Deletar");
+                            if (opM==1) {
+                                deletarPessoa();
+                            }else{
+                                deletarCarro();
+                            }
+                            break;
+                        case 0:
+                            
+                            break;
+                        default:
+                            System.out.println("--Opção inválida, tente novamente!--");
+                    }
+                }while(opSM != 0);
+                    break;
+                case 0:
+                    System.out.println("Aplicação encerrada pelo usuário");
+                    break;
+                default:
+                    System.out.println("Opção Inválida, tente novamente!");
+            }
+        }while (opM != 0);
+
     }// fime método main
-    
-    public static int leiaNumInt(){
+
+    public static int leiaNumInt() {
         Scanner leiaNum = new Scanner(System.in);
-        try{
-           return leiaNum.nextInt();
-        }catch(InputMismatchException i){
-           System.out.println("Erro: " + i.getMessage() + "\nTente Novamente!");
-           leiaNumInt();
+        try {
+            return leiaNum.nextInt();
+        } catch (InputMismatchException i) {
+            System.out.println("Erro: " + i.getMessage() + "\nTente Novamente!");
+            leiaNumInt();
         }
         return 99;
     }
-    
-    public static void menu(){
+
+    public static void menuP() {
         System.out.println("--Menu Principal--");
         System.out.println("1 - Ger. Pessoa");
         System.out.println("2 - Ger. Carro");
         System.out.println("0 - Sair");
         System.out.print("Digite Aqui: ");
     }//fim menuP
-    
-    public static void subMenu(int opM){
+
+    public static void subMenu(int opM) {
         String subM = null;
-        if(opM == 1){
+        if (opM == 1) {
             subM = "Pessoa";
         }
-        if(opM == 2){
+        if (opM == 2) {
             subM = "Carro";
         }
         System.out.println("--Ger. " + subM + " --");
@@ -68,5 +124,37 @@ public class INF3N212 {
         System.out.println("0 - Voltar");
         System.out.print("Digite aqui: ");
     }//fim subMenu
-    
+
+    private static void cadastrarPessoa() {
+        System.out.println("Pessoa");
+    }
+
+    private static void cadastrarCarro() {
+        System.out.println("Carro");
+    }
+
+    private static void editarPessoa() {
+    System.out.println("Pessoa");
+    }
+
+    private static void editarCarro() {
+    System.out.println("Carro");    
+    }
+
+    private static void ListarPessoa() {
+    System.out.println("Pessoa");
+    }
+
+    private static void listarCarro() {
+    System.out.println("Carro");
+    }
+
+    private static void deletarPessoa() {
+    System.out.println("Pessoa");   
+    }
+
+    private static void deletarCarro() {
+    System.out.println("Carro");
+    }
+
 }//fim classe
