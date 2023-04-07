@@ -20,7 +20,7 @@ public class CCarro {
   }
   
   public void removeCarro(Carro c){
-      this.carros.add(c);
+      this.carros.remove(c);
   }
   
   public ArrayList<Carro> getCarros(){
@@ -64,5 +64,9 @@ public class CCarro {
       c2.setProprietario(cadPessoa.getPessoaCPF("30668518006"));
       addCarro(c2);
   }
+
+    public void removePlaca(Carro c) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
   
 }//fim classe carro

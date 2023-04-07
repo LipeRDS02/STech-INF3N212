@@ -184,15 +184,57 @@ public class INF3N212 {
         String cor;
         String tpCambio;
         String combustivel;
+        Pessoa proprietario;
         boolean pCarro = true;
         do {            
             System.out.println("Informe a Placa: ");
             placa = leia.nextLine();
+            placa = placa.toUpperCase();
             pCarro = Validadores.validarPlaca(placa);
             if (pCarro) {
                 Carro carro = cadCarro.getCarroPlaca(placa);
                 if (carro == null) {
-                    
+                    System.out.println("Informe a marca: ");
+                    marca = leia.nextLine();
+                    System.out.println("Informe a modelo: ");
+                    modelo = leia.nextLine();
+                    do{
+                        System.out.println("Informe o ano fab.: ");
+                        anoFab = leiaNumInt();
+                        System.out.println("Informe o ano mod.: ");
+                        anoMod = leiaNumInt();
+                        if (!Validadores.validarAnoCarro(anoFab, anoMod)) {
+                            System.out.println("Ano inválido, tente novamente!");
+                        }
+                    }while(!Validadores.validarAnoCarro(anoFab, anoMod));
+                    System.out.println("Informe a cor: ");
+                    cor = leia.nextLine();
+                    System.out.println("Informe a tipo de câmbio: ");
+                    tpCambio = leia.nextLine();
+                    System.out.println("Informe a combustível: ");
+                    combustivel = leia.nextLine();
+                    do {                        
+                        System.out.println("Informe o CPF do proprietário");
+                        String cpf = leia.nextLine();
+                        proprietario = cadPessoa.getPessoaCPF(cpf);
+                        if (proprietario == null) {
+                            System.out.println("CPF não cadastrado, tente novamente!");
+                        }else{
+                            System.out.println("Pessoa selecionada: " + proprietario.getNome());
+                            System.out.println("Este é o prorpietário? ");
+                            System.out.println("1 - Sim | 2 - Não");
+                            System.out.print("Digite aqui: ");
+                            int op = leiaNumInt();
+                            if (op == 2) {
+                                System.out.println("Tente outro CPF.");
+                                proprietario = null;
+                            }
+                        }
+                    } while (proprietario == null);
+                    pCarro = false;
+                    Carro c = new Carro(placa, marca, modelo, anoFab, anoMod, cor, tpCambio, combustivel, proprietario);
+                    cadCarro.addCarro(c);
+                    System.out.println("Carro cadastrado com sucesso!");
                 }else{
                     System.out.println("Placa já cadastrada!");
                     pCarro = false;
@@ -262,7 +304,7 @@ public class INF3N212 {
     }
 
     private static void editarCarro() {
-        System.out.println("Carro");
+        System.out.println("Editar Carro");
     }
 
     private static void listarPessoa() {
@@ -320,7 +362,44 @@ public class INF3N212 {
     }
 
     private static void deletarCarro() {
-        System.out.println("Carro");
+        System.out.println("Deletar Carro");
+        boolean delPlaca = false;
+        do{
+          System.out.println("Informe a placa do carro a ser deletada: ");
+          String placa = leia.nextLine();
+          placa = placa.toUpperCase();
+          delPlaca=Validadores.validarPlaca(placa);
+          if (delPlaca) {
+              Carro c = cadCarro.getCarroPlaca(placa);
+              if (c != null) {
+                  System.out.println("Deseja realmente deletar " + c.getPlaca() + "?");
+                  System.out.println("1 - Sim | 2 - Não");
+                  int op = leiaNumInt();
+                  if (op ==1) {
+                      cadCarro.removeCarro(c);
+                      System.out.println("Carro deletado com sucesso!");
+                      delPlaca = false;
+                  }else{
+                      System.out.println("Operação cancelada pelo usuário!");
+                      delPlaca = false;
+                  }
+              }else{
+                  System.out.println("Placa não cadastrado!");
+                  System.out.println("Deseja tentar novamente?");
+                  System.out.print("1 - Sim | 2 - Não");
+                  int op = leiaNumInt();
+                  if (op ==1){
+                      delPlaca = true;
+                  }else{
+                      delPlaca = false;
+                  }
+              }
+           }else {
+              System.out.println("Placa esta inválido!"
+                    + "\nTente novamente.");
+              delPlaca = false;
+          }
+        }while(delPlaca);
     }
 
 }//fim classe
