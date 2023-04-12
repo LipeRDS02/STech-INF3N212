@@ -305,6 +305,92 @@ public class INF3N212 {
 
     private static void editarCarro() {
         System.out.println("Editar Carro");
+        boolean isPlaca;
+        do {            
+            System.out.println("Informe a Placa: ");
+            String placa = leia.nextLine();
+            placa= placa.toUpperCase();
+            isPlaca = Validadores.validarPlaca(placa);
+            if (isPlaca) {
+                Carro c;
+                c = cadCarro.getCarroPlaca(placa);
+                if (c != null) {
+                    System.out.println(c.toString());
+                    System.out.println("O que deseja alterar?");
+                    System.out.println("1 - Cor");
+                    System.out.println("2 - Tipo de câmbio");
+                    System.out.println("3 - Tipo de combustível");
+                    System.out.println("4 - Proprietário");
+                    System.out.println("5 - Todos");
+                    System.out.println("0 - Cancelar");
+                    System.out.println("Digite sua escolha aqui: ");
+                    int op = leiaNumInt();
+                    if (op ==1 | op == 5) {
+                        System.out.println("Informe a nova cor: ");
+                        c.setCor(leia.nextLine().toUpperCase());
+                    }
+                    if (op ==2 | op == 5) {
+                        System.out.println("Informe o novo câmbio: ");
+                        c.setTpCambio(leia.nextLine().toUpperCase());
+                    }
+                    if (op ==3 | op == 5) {
+                        System.out.println("Informe o novo combustível: ");
+                        c.setCombustivel(leia.nextLine().toUpperCase());
+                    }
+                    if (op ==4 | op == 5) {
+                        boolean isCPF;
+                        do {                            
+                            System.out.println("Informe o novo proprietário: ");
+                            String cpf = leia.nextLine();
+                            isCPF = Validadores.isCPF(cpf);
+                            if (isCPF) {
+                                Pessoa p = cadPessoa.getPessoaCPF(cpf);
+                                if (p != null) {
+                                    System.out.println("Pessoa selecionada " + p.getNome());
+                                    System.out.println("Está correto?");
+                                    System.out.println("1 - Sim | 2 - Não");
+                                    System.out.println("Digite aqui: ");
+                                    op = leiaNumInt();
+                                    if (op == 1) {
+                                        isPlaca = false;
+                                        c.setProprietario(p);
+                                    }
+                                }else{
+                                    System.out.println("CPF não encontrado!");
+                                    System.out.println("1 - Cadastrar?");
+                                    System.out.println("2 - Tente novamente");
+                                    System.out.println("Digite aqui sua opção:");
+                                    int op2 = leiaNumInt();
+                                    if (op2 == 1) {
+                                        cadastrarPessoa();
+                                    }
+                                }
+                            }
+                        } while (isCPF);
+                    }
+                    if (op == 0) {
+                        System.out.println("Edição do carrp cancelada pelo usuário!");
+                        isPlaca = false;
+                    }
+                    if (op < 0 || op > 5) {
+                        System.out.println("Opção inválida!");
+                    }
+                    isPlaca = false;
+                }else{
+                    System.out.println("Placa não cadastrada!");
+                    isPlaca = true;
+                }
+            }else{
+                System.out.println("Placa informada inválida!");
+                System.out.println("Deseja tentar novamente?");
+                System.out.println("1 - Sim | 2 - Não: ");
+                System.out.print("Digite aqui: ");
+                int op = leiaNumInt();
+                if (op == 1) {
+                    isPlaca = true;
+                }
+            }
+        } while (isPlaca);
     }
 
     private static void listarPessoa() {
